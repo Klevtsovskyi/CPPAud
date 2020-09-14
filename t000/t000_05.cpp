@@ -12,7 +12,7 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     unsigned a;
-    cout << "Ââåä³òü öèôðó: ";
+    cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ñ†Ð¸Ñ„Ñ€Ñƒ: ";
     cin >> a;
     cout << '\n' << a << ' ' << a << ' ' << a << endl;
     printf("%d %d\n", a, a);
