@@ -19,7 +19,7 @@ void print_matr(int** a, int n, int m)
 
 int* rand_vect(int m)
 {
-    int* v = (int*) calloc(m, sizeof *v);
+    int* v = new int[m];
     if (v)
     {
         for (int j = 0; j < m; j++)
@@ -31,14 +31,12 @@ int* rand_vect(int m)
 
 int** rand_matr(int n, int m)
 {
-    //int** a = new int*[n];
-    //int** a = (int**) malloc(n * sizeof **a);
-    int** a = (int**) calloc(n, sizeof **a);
+    int** a = new int*[n];
     if (a)
     {
         for (int i = 0; i < n; i++)
         {
-            a[i] = (int*) calloc(m, sizeof *a[i]);
+            a[i] = new int[m];
             for (int j = 0; j < m; j++)
                 a[i][j] = rand() % 100;
         }
@@ -49,14 +47,17 @@ int** rand_matr(int n, int m)
 
 int** add_row(int** a, int n, int m, int* v, int k, bool* success) // a
 {
-    a = (int**) realloc(a, (n + 1) * sizeof **a);
-    if (a)
+    int** b = new int*[n + 1];
+    if (b)
     {
-        for (int i = n; i > k; i--)
-            a[i] = a[i - 1];
-        a[k] = v;
+        for (int i = 0; i < k; i++)
+            b[i] = a[i];
+        b[k] = v;
+        for (int i = k + 1; i < n + 1; i++)
+            b[i] = a[i - 1];
+        delete a;
         *success = true;
-        return a;
+        return b;
     }
     *success = false;
     return a;
@@ -66,8 +67,8 @@ int** add_row(int** a, int n, int m, int* v, int k, bool* success) // a
 void free_matr(int** a, int n, int m)
 {
     for (int i = 0; i < n; i++)
-        free(a[i]);
-    free(a);
+        delete a[i];
+    delete a;
 }
 
 
