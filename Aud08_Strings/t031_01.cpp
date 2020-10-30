@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstring>>
+#include <cstring>
 #define N 200
 
 
@@ -102,7 +102,7 @@ void f4_replace(char s[], const char from[], const char to[])
 }
 
 
-void f5_clera_spaces(char s[])
+void f5_clear_spaces(char s[])
 {
     int j = 0, k = 0;
     int n = strlen(s);
@@ -126,7 +126,7 @@ int main()
     //f2(s, rez);
     //f3(s, rez);
     //f4_replace(s, "phi", "f");
-    f5_clera_spaces(s);
+    f5_clear_spaces(s);
     cout << s << endl;
     //cout << rez << endl;
     return 0;
