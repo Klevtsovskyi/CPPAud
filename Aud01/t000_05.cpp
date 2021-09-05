@@ -1,6 +1,6 @@
 #include <iostream>
-#include <locale>
-//#include <windows.h>
+//#include <locale>
+#include <windows.h>
 
 
 using namespace std;
@@ -8,9 +8,9 @@ using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "Ukrainian");
-    //SetConsoleCP(1251);
-    //SetConsoleOutputCP(1251);
+    //setlocale(LC_ALL, "Ukrainian");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     unsigned a;
     cout << "Введіть цифру: ";
     cin >> a;
