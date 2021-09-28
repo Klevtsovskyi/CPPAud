@@ -22,6 +22,7 @@ int main() {
     n = n & m;
     cout << bitset<16>(n) << endl;
     cout << n << endl;
+    printf("%X\n", n);
 
     return 0;
 }
