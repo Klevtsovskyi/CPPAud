@@ -5,19 +5,20 @@
 using namespace std;
 
 
-int input(int* a) {
+int input(int** a) {
+    *a = (int*) malloc(0 * sizeof **a);
     int n = 0;
-    if (a) {
+    if (*a) {
         while (n < 100) {
             int m;
             cin >> m;
             if (m == 0)
                 break;
             n++;
-            a = (int*) realloc(a, n * sizeof *a);
-            if (a == NULL)
+            *a = (int*) realloc(*a, n * sizeof **a);
+            if (*a == NULL)
                 exit(1);
-            a[n - 1] = m;
+            (*a)[n - 1] = m;
         }
     }
     return n;
@@ -55,13 +56,10 @@ int full_cubes(int* a, int n) {
 
 int main() {
     int* a;
-    a = (int*) malloc(0 * sizeof *a);
-    if (a) {
-        int n = input(a);
-        print(a, n);
-        cout << full_squares(a, n) << endl;
-        cout << full_cubes(a, n) << endl;
-        free(a);
-    }
+    int n = input(&a);
+    print(a, n);
+    cout << full_squares(a, n) << endl;
+    cout << full_cubes(a, n) << endl;
+    free(a);
     return 0;
 }
