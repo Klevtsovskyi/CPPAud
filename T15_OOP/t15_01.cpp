@@ -55,7 +55,7 @@ public:
         denom = denom * other.denom;
         reduce();
     }
-    void mutiply(const Rational& other) {
+    void multiply(const Rational& other) {
         numer *= other.numer;
         denom *= other.denom;
         reduce();
@@ -63,6 +63,15 @@ public:
 
     Rational operator+ () const {return Rational(*this);}
     Rational operator- () const {return Rational(-numer, denom);}
+
+    bool operator< (const Rational& other) const {return numer * other.denom < other.numer * denom;}
+    bool operator< (int x) const {return numer < x * denom;}
+    bool operator> (const Rational& other) const {return numer * other.denom > other.numer * denom;}
+    bool operator> (int x) const {return numer > x * denom;}
+    bool operator<= (const Rational& other) const {return numer * other.denom <= other.numer * denom;}
+    bool operator>= (const Rational& other) const {return numer * other.denom >= other.numer * denom;}
+    bool operator== (const Rational& other) const {return numer == other.numer && denom == other.denom;}
+    bool operator!= (const Rational& other) const {return numer != other.numer || denom != other.denom;}
 
     Rational operator+ (const Rational& other) const {
         Rational result(*this);
@@ -74,9 +83,20 @@ public:
         result.add(-other);
         return result;
     }
+    Rational operator*(const Rational& other) const {
+        Rational result(*this);
+        result.multiply(other);
+        return result;
+    }
+
+    double to_double() {return (double) numer / denom;}
 
     static int abs(int x)  {
         return (x < 0) ? -x : x;
+    }
+
+    static Rational abs(const Rational& r) {
+        return (r < 0) ? Rational(-r) : Rational(r);
     }
 
     static int gcd(int a, int b) {
